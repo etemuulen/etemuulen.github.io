@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects – Tem</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #f5f7fa, #e4ecf5);
+      --text: #2c2c2c;
+      --accent: #1e3a8a;
+      --accent-hover: #1c2f6d;
+      --white: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      background: var(--bg-gradient);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: left;
+      padding-bottom: 1rem;
+    }
+
+    .logo {
+      font-weight: 400;
+      font-size: 1rem;
+      opacity: 0.8;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin-bottom: 2rem;
+    }
+
+    .project {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(8px);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s ease;
+    }
+
+    .project:hover {
+      transform: translateY(-3px);
+    }
+
+    .project a {
+      text-decoration: none;
+      color: var(--accent);
+    }
+
+    .project h2 {
+      font-size: 1.2rem;
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+    }
+
+    .project p {
+      font-size: 0.95rem;
+      color: #444;
+      line-height: 1.6;
+    }
+
+    .back {
+      display: inline-block;
+      margin-bottom: 2rem;
+      font-size: 0.9rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .back:hover {
+      text-decoration: underline;
+      color: var(--accent-hover);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem 0 0.5rem;
+      font-size: 0.8rem;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+ 
+    <a class="back" href="index.html">← Back to Home</a>
+
+    <div class="project">
+      <a href="/projects/RV.html">
+        <h2>What Is a Random Variable? A Measure-Theoretic Perspective</h2>
+        <p>
+        \( \mathbb{R}^n \)
+        </p>
+      </a>
+    </div>
+<!--
+    <div class="project">
+      <a href="/projects/compactness-boundedness.html">
+        <h2>Compactness in \( \mathbb{R}^n \)</h2>
+        <p>
+          Exploring the Heine–Borel theorem, and the interplay between compactness, closedness, and boundedness.
+        </p>
+      </a>
+    </div>
+    
+    ##can add more project cards with this template
+-->
+  
+    <footer>© 2025</footer>
+  </div>
+</body>
+</html>
