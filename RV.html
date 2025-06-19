@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What is a Random Variable? A Measure-Theoretic Perspective</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/telescopic-text/lib/index.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+  
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #f5f7fa, #e4ecf5);
+      --text: #2c2c2c;
+      --accent: #1e3a8a;
+    }
+
+    body {
+      font-family: "Gill Sans", sans-serif;
+      font-weight: 300;
+      background: var(--bg-gradient);
+      color: var(--text);
+      margin: 0;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .back {
+      font-size: 0.9rem;
+      display: inline-block;
+      margin-bottom: 2rem;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      font-weight: 400;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      line-height: 1.6;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #888;
+      margin-top: 4rem;
+    }
+  </style>
+
+</head>
+
+
+<body>
+  <div class="container">
+    <a href="/projects.html" class="back">← Back to Projects</a>
+
+    <h1>What is a Random Variable? A Measure-Theoretic Perspective.</h1>
+
+    <p>
+      In introductory probability, a random variable is typically defined as a function that assigns real numbers to outcomes in a sample space. 
+      While this definition works well for elementary or applied problems, it lacks the rigor and generality needed for more advanced topics. 
+      In particular, it doesn’t help us understand the deeper theoretical foundations of probability, especially when dealing with infinite sample spaces, convergence, or expectations.  
+    </p> 
+
+    <p>
+      The ingredients of a probability model are defined below:<br/> 
+    <Strong>Definitions:</Strong><br> 
+    <em> 
+        <ul>
+        <li>\( \Omega\) is called the sample space (a set of all the conceivable outcomes).</li>
+        <li>\( \mathcal{F}\) is a collection of measureable events (subsets of \( \Omega \)), in other words, a \( \sigma-algebra \) on \( \Omega \).</li>
+        <li>A probability measure on \( (\Omega, \mathcal{F})\) is function \( \mathbb{P} : \mathcal{F} \rightarrow [0,1] \) such that \( \mathbb{P}(\Omega)=1 \), \( \mathbb{P}(\emptyset)=0\),
+            and is countably additive \( \mathbb{P}\left( \bigcup_{i=1}^\infty A_i \right) = \sum_{i=1}^\infty \mathbb{P}(A_i)\) for disjoint \( A_i \in \mathcal{F}\).</li>
+        <li>The ordered triple \( (\Omega, \mathcal{F}, \mathbb{P}) \) is called a probability space if \(\mathbb{P}\) is a probability measure on \( (\Omega, \mathcal{F})\) and \(\mathcal{F}\) is a \( \sigma-algebra \) on \( \Omega \).</li>
+        </ul>
+    </em> 
+    </p>
+
+    <p>
+      The measure-theoretic framework may appear unnecessarily abstract, but its components resolve fundamental limitations to classical probability.
+      While \( \mathbb{P}(Heads)=1/2\) for a fair coin is straightforward, consider:
+    </p>
+
+    <p>
+      What is \( \mathbb{P}(Person's \space height \in [180,190] )\) given that our \( \Omega=\text{{person 1, person 2, person 3, ...}} \)?
+    </p>
+
+    <p>
+      Here, outcomes aren't discrete, can't count outcomes, and probabilites of singletons are zero. Classical probability let's us down.
+      We need a way to assign probabilities to sets of outcomes. This is where measure theory enters, it provides the tools necessary to define probabilites of these sets.
+    </p>
+
+    <p>
+      Since our \( \Omega \) contains people, not numbers, we need random variables to extract numerical attributes like height from the elements.
+      They map complex or non-numerical outcomes to real numbers we can work with. 
+      However, to assign probabilities to those real-number events, we need to make sure the function \( X\) and the sets \( \{X \leq a:a\in\mathbb{R} \}\) is mathematically valid.
+    </p>
+
+    <p>
+      Let our random variable be a measurable function \( X : \Omega \rightarrow \mathbb{R} \) such that \( X(\omega)=\text{height of person} \space \omega \), then our question becomes ''what is \( \mathbb{P}(180\leq X \leq 190) \)?''.
+    </p>
+
+    <p>
+      An important condition for random variables is for it to be a <u>measurable function</u>. Here's what it means to be measurable:
+    </p>
+
+    <p>
+      <Strong>Definition:</Strong>
+      <em>Suppose \( (\Omega, \mathcal{F}) \) is a measurable space. Then a function \( X : \Omega \rightarrow \mathbb{R} \) is a measurable function if \( X^{-1}(B) \in \mathcal{F} \) for every Borel set \( B \in \mathbb{R} \).</em>
+    </p>
+
+    <p>
+      This tells us that a random variable has to behave reasonably with a \( \sigma-algebra\) on their domain.
+      Without measurability, such probabilities might not exist!
+      In intuitive terms, we obviously can't assign probabilities (measure) to something that isn't a possible event (a set of subsets of \( \Omega)\).
+      Let's go back to our example problem and verify that our random variable is indeed a measurable function with a rough proof.
+    </p>
+
+    <p>
+      WTS: \([180,190] \subseteq \mathbb{R}\) is a Borel set, and \( X^{-1}([180,190]) = \{\omega \in \Omega : X(\omega) \in [180,190] \} \in \mathcal{F}. \)
+    </p>
+
+    <p>
+      \(Proof.\)  \( [180,190]= \bigcap_{n=1}^\infty (180-\frac{1}{n}, 190+\frac{1}{n}) \) and open sets are Borel sets. 
+      Any countable union/intersection of Borel sets is Borel.
+    </p>
+
+    <p>
+      Since our sample space consists of people (most likely a large population), let's assume that \( \Omega\) is uncountable.
+      Then it's also safe to assume \( \mathcal{F}\) is defined to include all sets defined by height constraints as we are dealing in real-world probability spaces.
+      So for any arbitrary \(a\in\mathbb{R}\), \( \{\omega : X(\omega) \leq a \} \) is a valid event in \(\mathcal{F}\) based on our assumption (in practice, \(\mathcal{F}\) contains all sets defined by height intervals because height is physically measurable).
+      Therefore \( \{\omega : X(\omega) \leq 180 \} \) and \( \{\omega : X(\omega) \leq 190 \} \) are in \(\mathcal{F}\). As \(\sigma-algebras\) are closed under countable unions, and set differences preserve measurability, we get the following: 
+      \( \{\omega : X(\omega) \lt  180 \} = \bigcup_{n=1}^\infty\{ \omega : X(\omega) \leq 180 -\frac{1}{n}\} \in \mathcal{F}\),
+      \( \{\omega : X(\omega) \leq 190 \} - \{\omega : X(\omega) \lt  180 \} = \{\omega : 180 \leq X(\omega) \leq 190 \} \in \mathcal{F}.\)
+      Hence, we have shown that \([180,190]\) is a Borel set and our random variable \( X : \Omega \rightarrow \mathbb{R} \) is indeed a measurable function. \(\square\)
+    </p>
+
+    <p>
+      Just to nail it home, let's remind ourselves why \( \{X \in [180,190]\} \in \mathcal{F} \) matters. 
+      Without this measurability, we wouldn't be able to assign probabilities at all, because probability is, at its core, a way of measuring.
+      Since our random variable is measurable, we know that \( \mathbb{P}(X \in [180,190]) \) is defined and there exists a \( p \in [0,1]\) such that \( \mathbb{P}(X \in [180,190])=p \).
+    </p>
+
+    <p>
+      Now, let's walk through two exercises with random variables from <em>Introduction to Probability</em> by Anderson, Seppalainen, and Valko.
+    </p>
+
+    <p>
+      <Strong>Example problem 1:</Strong> There are four dollar bills. You roll a fair die repeatedly. Every time you fail to get a six, one dollar bill is removed.
+      When you get your first six, you get to take the money that remains on the table. If the money runs our before you roll a six, you have lost and the game is over. Let \(X\) be the amount of your award.
+      Find the possible values and the probability mass function of \(X\).
+    </p>
+
+    <p>
+      <em>Solution:</em> Trivially, \(X \in [0,1,2,3,4]\). Our sample space \( \Omega\) will be the set of ordered n-tuples with n being the number of rolls, \(1\leq n \leq 4\).<br>
+      (Let's really quickly see that \(X\) is measurable: \( \{X=0\} = X^{-1}(\{0\}) = \{\omega \in \Omega : X(\omega)=0 \} \Rightarrow \) Didn't roll a six before the money ran out. So a possible event would be \( \{ (1,2,3,4), (2,5,3,1), ... \} \), which is obviously \( \in \mathcal{F}\).) <br>
+      Then \( \mathbb{P}(X=0) = (\frac{5}{6})^{4}\), \( \mathbb{P}(X=1) = (\frac{5}{6})^{3}\frac{1}{6}\), \( \mathbb{P}(X=2) = (\frac{5}{6})^{2}\frac{1}{6}\), \( \mathbb{P}(X=3) = (\frac{5}{6})\frac{1}{6}\), \( \mathbb{P}(X=4) = \frac{1}{6}\).
+    </p>
+    
+    <p>
+      <Strong>Example problem 2:</Strong> An urn contains 3 red balls and 1 yellow ball. We draw balls from the urn one by one w/o replacement. Let X denote the number of red balls we see before the yellow. Find the possible values and the probability mass function of \(X\).
+    </p>
+
+    <p>
+      <em>Solution:</em> \(X \in [0,1,2,3]\), which is just the number of red balls we could see before seeing yellow. 
+      Then \( \mathbb{P}(X=0) = (\frac{1}{4})(\frac{3}{3})(\frac{2}{2})(\frac{1}{1})=\frac{1}{4}, \mathbb{P}(X=1) = (\frac{3}{4})(\frac{1}{3})(\frac{2}{2})(\frac{1}{1})=\frac{1}{4}, \mathbb{P}(X=2) = (\frac{3}{4})(\frac{2}{3})(\frac{1}{2})(\frac{1}{1})=\frac{1}{4},\) <br> 
+      \( \mathbb{P}(X=3) = (\frac{3}{4})(\frac{2}{3})(\frac{1}{2})(\frac{1}{1})=\frac{1}{4} \).
+    </p>
+
+    <p>
+      To conclude, the measure-theoretic definition of random variables also lays the groundwork for defining expectation using Lebesque integration, studying convergence of random variables, and even formulating conditional probability rigorously. 
+      Super interesting stuff!
+    </p>
+
+
+    <footer>© Temuulen Enkhtuvshin 2025</footer>
+  </div>
+</body>
+</html>
+
