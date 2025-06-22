@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Prime Number Counter</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #f5f7fa, #e4ecf5);
+      --text: #2c2c2c;
+      --accent: #1e3a8a;
+    }
+
+    body {
+      font-family: "Gill Sans", sans-serif;
+      font-weight: 300;
+      background: var(--bg-gradient);
+      color: var(--text);
+      padding: 2rem 1rem;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-weight: 400;
+      margin-bottom: 1rem;
+    }
+
+    label, select, input, button {
+      display: block;
+      margin: 1rem 0;
+      font-size: 1rem;
+    }
+
+    button {
+      background-color: var(--accent);
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #1c2f6d;
+    }
+
+    #output {
+      margin-top: 1.5rem;
+      white-space: pre-wrap;
+    }
+
+    .back {
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+      display: inline-block;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .back:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a class="back" href="/projects.html">← Back to Projects</a>
+
+    <h1>Prime Number Counter</h1>
+
+    <label for="size">Size of the set {1,...,n}:</label>
+    <input type="number" id="size" min="2" />
+
+    <label for="choice">Which would you like to see?</label>
+    <select id="choice">
+      <option value="number">The number of primes in the set</option>
+      <option value="list">List of primes in the set</option>
+      <option value="both">Both</option>
+    </select>
+
+    <button onclick="runPrimeCounter()">Submit</button>
+
+    <div id="output"></div>
+  </div>
+  <script src="prime-counter.js"></script>
+</body>
+</html>
